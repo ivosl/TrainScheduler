@@ -42,17 +42,14 @@ $("#add-train").on("click", function(event) {
 
 database.ref().on("child_added", function(childSnapshot) {
     
-    
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTrain, "HH:MM").subtract(1, "years");
-    console.log(firstTimeConverted);
-    
-    // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-    
+    var now = moment();
+    firstTrainMoment = moment($("#first-train").val().trim(), "hh:mm");
+    console.log(now);
+    console.log(firstTrainMoment);
+    console.log("difference is ", firstTrainMoment.diff(now, "minutes"), "minutes");
+
     // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var diffTime = moment().diff(moment(firstTrainMoment), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
     
     // Time apart (remainder)
@@ -65,9 +62,9 @@ database.ref().on("child_added", function(childSnapshot) {
     
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log(nextTrain);
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
     
-    // Log everything that's coming out of snapshot
     
     $("#train-list").append(
         "<div class='row'><div class='col-lg-2'>" 
@@ -79,12 +76,10 @@ database.ref().on("child_added", function(childSnapshot) {
         + "</div><div class='col-lg-2'>" 
         + tMinutesTillTrain
         + "</div><div class='col-lg-2'>" 
-        + nextTrain
+        + moment(nextTrain).format("hh:mm")
         + "</div></div>");
         
         // Handle the errors
     }, function(errorObject) {
         console.log("Errors handled: " + errorObject.code);
     });
-    
-    
