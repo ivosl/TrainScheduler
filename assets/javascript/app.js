@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     /* global moment firebase */
     // Initialize Firebase
     var config = {
@@ -19,8 +19,12 @@ $(document).ready(function() {
     // Whenever a user clicks the click button
     $("#add-train").on("click", function(event) {
         event.preventDefault();
-        
-        // Get the input values
+
+        //Some modified code from Employee Time Sheet in class activity was used
+        //that was done by our group Jina, Stephanie, Joe and myself...
+        //Later on some methodology approach was discussed among Chetan, Jina and myself.
+
+        //Get the input values
         
         var trainName = $("#train-name").val().trim();
         var destination = $("#destination").val().trim();
