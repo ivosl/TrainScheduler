@@ -14,6 +14,17 @@ img {
 .jumbotron h2 {
     color: black;
 }
-.panel-title {
-    color: rgb(180, 29, 29);
+.panel-title{
+    background: rgb(180, 29, 29);
+    padding: 5px;
+    color: white;
+}
+
+.btn-primary{
+    background: rgb(180, 29, 29);
+    padding: 5px;
+    color: white;
+}
+body{
+background-image: url(../images/hogwarts.png);
 }
